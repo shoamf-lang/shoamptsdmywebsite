@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My First HTML Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    /* Reset + Box Model */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    /* Sidebar Navigation */
+    nav {
+      background-color: #2c3e50;
+      color: white;
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100vh;
+      width: 220px;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 1rem;
+      gap: 0.5rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.6rem 0.8rem;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Layout */
+    .layout {
+      display: flex;
+      flex-direction: column;
+      margin-left: 220px;
+      padding: 2rem;
+      gap: 2rem;
+    }
+
+    main {
+      flex: 2;
+      background-color: #ddd3d3;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    .sidebar {
+      background-color: #f0f0f0;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .title {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .subtitle {
+      display: block;
+      font-size: 0.95em;
+      font-weight: 400;
+      margin-top: 0.3em;
+      color: #555;
+    }
+
+    .intro, .calcalist {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 1.5em;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    /* Actions / breathing block */
+    .actions { background: #fff; padding: 1rem; border-radius: 8px; border: 1px solid #e6e6e6; }
+    .actions .section-title { margin-bottom: 0.5rem; }
+    .button-group { display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem; }
+    .button-group button { padding:0.6rem 0.9rem; border-radius:6px; border:0; background:#2c3e50; color:#fff; cursor:pointer; }
+    .button-group button:hover { opacity:0.95; }
+
+    .breathing { margin-top: 1rem; background:#fcfcfc; padding:0.75rem 1rem; border-radius:6px; border:1px solid #f0f0f0; }
+    .breathing[hidden] { display: none; }
+    /* ensure breathing block takes full row under buttons */
+    .button-group { display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem; }
+    .button-group .breathing { flex-basis:100%; }
+    .breathing h3 { margin:0 0 0.5rem 0; font-size:1rem; }
+    .breathing ul { margin-left:1rem; list-style: disc; color:#333; }
+    .breathing li { margin:0.4rem 0; }
+
+    /* Sharing block (hidden by default, toggled by Share button) */
+    .sharing { margin-top: 1rem; background:#fffefc; padding:0.85rem 1rem; border-radius:6px; border:1px solid #f0e6dd; color:#222; }
+    .sharing[hidden] { display:none; }
+    .button-group .sharing { flex-basis:100%; }
+    .sharing h3 { margin:0 0 0.5rem 0; font-size:1rem; }
+    .sharing p { margin:0.4rem 0; }
+    .sharing ul { margin-left:1rem; margin-top:0.4rem; }
+    
+    /* Commit (healing) block */
+    .commit { margin-top: 1rem; background:#f7fff7; padding:0.85rem 1rem; border-radius:6px; border:1px solid #e6f3e6; color:#222; }
+    .commit[hidden] { display:none; }
+    .button-group .commit { flex-basis:100%; }
+    .commit h3 { margin:0 0 0.5rem 0; font-size:1rem; }
+    .commit p, .commit li { margin:0.4rem 0; }
+
+    .gallery img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    footer {
+      background-color: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 1em;
+      margin-top: 2rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 800px) {
+      nav {
+        position: static;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 1rem;
+      }
+
+      .layout {
+        margin-left: 0;
+        padding: 1rem;
+      }
+
+      .gallery img {
+        width: 45%;
+        height: 160px;
+      }
+
+      .sidebar {
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery img {
+        width: 100%;
+        height: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <div class="layout">
+    <main>
+      <h1 class="title">
+        The Unending Battle:
+        <span class="subtitle">Sharp Strategies for Navigating Life with PTSD</span>
+      </h1>
+
+      <p class="intro">Hello, I'm Shoam. My goal is to reflect the ongoing journey of living with PTSD.</p>
+
+      <p class="calcalist">
+        <a href="https://www.calcalist.co.il" target="_blank">Visit my favorite website: Calcalist</a>
+      </p>
+
+      <section class="gallery">
+        <img src="IMG/SA.jpg" alt="Soldier in field">
+        <img src="IMG/SO.jpg" alt="Medical corps emblem">
+        <img src="IMG/SQ.jpg" alt="Soldiers in battle">
+     </section>
+<section class="actions">
+  <h2 class="section-title">Take Action</h2>
+  <p class="action-text">If you're on a journey with PTSD or supporting someone who is — you're not alone. Choose your next step with as:</p>
+
+    <div class="button-group">
+    <button data-action="support">💬 I Need Support</button>
+    <button data-action="share">📣 Share My Story</button>
+    <button data-action="commit">✅ I Commit to Healing</button>
+
+    <!-- breathing block moved into the button-group so it can appear directly under the support button -->
+    <div class="breathing" aria-labelledby="breathing-title" hidden>
+      <h3 id="breathing-title">Simple breathing exercise</h3>
+      <ul>
+        <li>The way to do this is to take a normal inhale and take a long, extended exhale saying a word aloud, such as “calm” or “relax”.</li>
+        <li>It is the long exhale that helps lower your emotional thermometer and your overall autonomic stress response.</li>
+        <li>You can repeat this exercise as many times as possible.</li>
+      </ul>
+    </div>
+
+    <!-- sharing block toggled by the Share My Story button -->
+    <div class="sharing" aria-labelledby="sharing-title" hidden>
+      <h3 id="sharing-title">Sharing your story — things to know</h3>
+      <p>Sharing your story of post-traumatic stress disorder (PTSD) can be a powerful and healing experience, but it is a deeply personal decision that should be approached with care.</p>
+
+      <strong>Benefits of Sharing Your Story</strong>
+      <ul>
+        <li><strong>Reduces shame and isolation:</strong> Trauma is often isolating, and sharing your experience can help you feel less alone and counter feelings of shame.</li>
+        <li><strong>Organizes memories:</strong> Telling your story can help organize fragmented memories of the traumatic event into a more coherent narrative with a beginning, middle, and end, making them feel more manageable.</li>
+        <li><strong>Challenges negative beliefs:</strong> By speaking about the experience, you can identify and correct unhelpful beliefs about yourself or the world that developed after the trauma (e.g., "I am weak," or "no one can be trusted").</li>
+        <li><strong>Fosters empowerment and growth:</strong> Reclaiming control over your narrative can shift your perspective from a place of victimhood to one of strength, resilience, and survival, leading to post-traumatic growth.</li>
+        <li><strong>Helps others:</strong> Your story can inspire others in similar situations to seek help, build community understanding, and help advocate for trauma-informed policies and practices.</li>
+      </ul>
+
+      <strong>Important Considerations for Safe Sharing</strong>
+      <ul>
+        <li><strong>Timing is key:</strong> Only you can know when the right time is to share. Be patient with yourself and consider consulting a mental health professional to determine if you are ready.</li>
+        <li><strong>Choose the right audience:</strong> Not everyone is the ideal person to share with. Start with a trusted friend, family member, or a supportive therapist. Support groups with other survivors can also be a safe place for shared understanding.</li>
+        <li><strong>Control the details:</strong> You are in control of what you share and what you keep private. You can start by sharing only the facts, and later, if you choose, add thoughts and feelings.</li>
+        <li><strong>Prepare for potential risks:</strong> Be aware of potential risks like increased vulnerability, re-traumatization, or unhelpful responses from others. Having a safety plan, such as a support person to call afterward, can help manage distress.</li>
+        <li><strong>Use trigger warnings:</strong> If sharing publicly, consider including trigger warnings to allow others to opt out if they are not in a place to hear the details of your experience.</li>
+        <li><strong>Focus on impact:</strong> Instead of dwelling on graphic details of the event itself, focus more on how it affected you and the strength you found in recovery.</li>
+      </ul>
+
+      <strong>Where to Share Your Story</strong>
+      <ul>
+        <li><strong>Therapy:</strong> This is often the safest place to begin, with a mental health professional trained in trauma recovery (e.g., narrative therapy or Trauma-Focused CBT).</li>
+        <li><strong>Support groups:</strong> Connect with others with shared lived experiences.</li>
+        <li><strong>Organizations:</strong> Many mental health and victim advocacy organizations offer submission forms for sharing your story in a controlled environment.</li>
+        <li><strong>Creative outlets:</strong> Writing, journaling, poetry, or other art forms offer alternative ways to process and share your experience.</li>
+      </ul>
+
+      <p>Ultimately, the decision to share your story, and how you do so, is yours alone, and it's okay if you decide not to share publicly at all.</p>
+    </div>
+    
+    <!-- commit / healing block toggled by the Commit button -->
+    <div class="commit" aria-labelledby="commit-title" hidden>
+      <h3 id="commit-title">Committing to Healing — Key Principles</h3>
+      <p>Committing to healing from Post-Traumatic Stress Disorder (PTSD) is a brave and important step. Recovery is an ongoing journey that involves professional guidance, self-care, and building a support system.</p>
+
+      <strong>Key Principles for Healing</strong>
+      <ul>
+        <li>Recovery is possible but often not linear; setbacks are a normal part of the process and do not mean you are failing.</li>
+        <li>Healing doesn't mean forgetting the traumatic events; it means reducing the intensity and frequency of symptoms and gaining confidence in your ability to cope with memories and feelings.</li>
+        <li>Patience and self-compassion are vital. Treat yourself with the same kindness and understanding you would a friend.</li>
+      </ul>
+
+      <strong>Essential Steps and Strategies</strong>
+      <ol>
+        <li>
+          <strong>Seek Professional Help</strong>
+          <p>A mental health professional specializing in trauma is crucial for diagnosis and an effective treatment plan. Trauma-focused therapies are highly recommended (TF-CBT, EMDR, CPT).</p>
+        </li>
+        <li>
+          <strong>Build a Support System</strong>
+          <p>Connecting with trusted friends, family, support groups, and safe relationships is vital for healing.</p>
+        </li>
+        <li>
+          <strong>Practice Self-Care and Coping Strategies</strong>
+          <p>Mindfulness, exercise, maintaining routine, avoiding maladaptive coping, and journaling can help manage symptoms and support recovery.</p>
+        </li>
+        <li>
+          <strong>Manage Triggers</strong>
+          <p>Learn grounding techniques, limit exposure to triggering media, and prepare safety plans for difficult moments.</p>
+        </li>
+      </ol>
+
+      <strong>A Note on Crisis Support</strong>
+      <p>If you or someone you know is struggling or having thoughts of suicide, please reach out for immediate support — contact local emergency services or a crisis hotline right away.</p>
+
+      <p>By acknowledging your commitment and taking these structured steps, you can navigate the healing process and work towards a life with fewer symptoms and greater well-being.</p>
+    </div>
+  </div>
+</section>
+
+
+    </main>
+
+    <aside class="sidebar">
+      <h2>About Me</h2>
+      <p>I’m Shoam, a passionate learner and advocate for mental health awareness through creative expression.</p>
+
+      <h2>Quote of the 'Weekly'</h2>
+      <blockquote>
+        “Out of suffering have emerged the strongest souls; the most massive characters are seared with scars.”<br>– Khalil Gibran
+      </blockquote>
+
+      <h2>Resources</h2>
+      <ul>
+        <li><a href="https://www.natal.org.il/" target="_blank">מרכז נטל – סיוע לנפגעי טראומה</a></li>
+        <li><a href="https://www.ptsd.va.gov/" target="_blank">PTSD Information Center</a></li>
+        <li><a href="https://shikum.mod.gov.il//" target="_blank">שיקום</a></li>
+      </ul>
+
+      <h2>My Weekly Focus</h2>
+      <ul>
+        <li>🧘‍♂️ Monday – Mindfulness practice and learning</li>
+        <li>📖 Wednesday – Writing reflection</li>
+        <li>🚶 Friday – Nature walk</li>
+      </ul>
+    </aside>
+  </div>
+
+  <footer>
+    &copy; 2025 Shoam's Project
+  </footer>
+
+    <script>
+      // Reveal the breathing block when 'I Need Support' is clicked
+      (function(){
+        const supportBtn = document.querySelector('.button-group button[data-action="support"]');
+        const shareBtn = document.querySelector('.button-group button[data-action="share"]');
+        const commitBtn = document.querySelector('.button-group button[data-action="commit"]');
+        const breathing = document.querySelector('.button-group .breathing');
+        const sharing = document.querySelector('.button-group .sharing');
+        const commitPanel = document.querySelector('.button-group .commit');
+
+        function toggleSection(btn, panel){
+          if(!btn || !panel) return;
+          btn.addEventListener('click', function(){
+            const isHidden = panel.hasAttribute('hidden');
+            if(isHidden){
+              panel.removeAttribute('hidden');
+              btn.setAttribute('aria-expanded','true');
+              panel.scrollIntoView({behavior:'smooth', block:'center'});
+            } else {
+              panel.setAttribute('hidden','');
+              btn.setAttribute('aria-expanded','false');
+            }
+          });
+        }
+
+        toggleSection(supportBtn, breathing);
+        toggleSection(shareBtn, sharing);
+        toggleSection(commitBtn, commitPanel);
+      })();
+    </script>
+
+</body>
+</html>
