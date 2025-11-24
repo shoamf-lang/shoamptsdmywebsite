@@ -1,8 +1,20 @@
-# נשתמש בשרת Nginx קליל
-FROM nginx:alpine
+# Use a Node.js base image
+FROM node:alpine
 
-# נעתיק את כל קבצי האתר לתיקיית ברירת המחדל של Nginx
-COPY . /usr/share/nginx/html
+# Set the working directory inside the container
+WORKDIR /app
 
-# נחשוף את פורט 80 (HTTP)
-EXPOSE 80
+# Copy the package.json and package-lock.json files
+COPY package.json package-lock.json ./
+
+# Install the dependencies
+RUN npm install
+
+# Copy the rest of the project files
+COPY . .
+
+# Expose the port the server will run on
+EXPOSE 3000
+
+# Start the server
+CMD ["node", "server.js"]
